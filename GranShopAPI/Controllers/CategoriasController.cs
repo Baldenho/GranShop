@@ -1,16 +1,19 @@
 using GranShopAPI.Data;
 using GranShopAPI.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace GranShopAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class CategoriasController(AppDbContext db) : ControllerBase
+    public class CategoriasController (AppDbContext db) : ControllerBase
     {
 
         private readonly AppDbContext _db = db;
+        // public CategoriasController(AppDbContext db)
+        // {
+        //     _db = db;
+        // }
 
         [HttpGet]
         public IActionResult get()
@@ -18,15 +21,16 @@ namespace GranShopAPI.Controllers
             return Ok(_db.Categorias.ToList());
         }
 
-        [HttpGet]
+        [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var categoria = db.Categorias.Find(id);
+            var categoria = _db.Categorias.Find(id);
             if (categoria == null)
             {
                 return NotFound();
             }
             return Ok(categoria);
+            
         }
         [HttpPost]
         public IActionResult create([FromBody] Categoria categoria)
@@ -56,5 +60,6 @@ namespace GranShopAPI.Controllers
             _db.Categorias.Remove(categoria);
             _db.SaveChanges();
             return NoContent();
+        }
     }
 }

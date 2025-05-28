@@ -18,7 +18,7 @@ builder.Services.AddSwaggerGen(c =>
     {
         Title = "GranShop API",
         Version = "v1",
-        Description = "Documentação da API"
+        Description = "Documentação da API",
     });
 });
 
