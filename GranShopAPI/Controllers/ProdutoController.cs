@@ -20,7 +20,10 @@ namespace GranShopAPI.Controllers
         [HttpGet("{id}")]
         public IActionResult Get(int id)
         {
-            var produto = _db.Produtos.Include(i => i.Categoria).FirstOrDefault(p => p.Id == id);
+            var produto = _db.Produtos
+            .Include(i => i.Categoria)
+            .FirstOrDefault(p => p.Id == id);
+
             if (produto == null)
             {
                 return NotFound();
@@ -57,6 +60,14 @@ namespace GranShopAPI.Controllers
             _db.Produtos.Remove(produto);
             _db.SaveChanges();
             return NoContent();
+
         }
+        
+        // [HttpGet("/MEUOVO/{id}")]
+        // public IActionResult Getfodase(int id)
+        // {
+        //     var meuOvo = _db.Produtos.Include(i => i.Categoria).Where(w => w.Id == id).FirstOrDefault();
+        //     return Ok(meuOvo.Categoria);
+        // }
     }
 }

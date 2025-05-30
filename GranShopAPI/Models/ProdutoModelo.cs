@@ -10,14 +10,12 @@ namespace GranShopAPI.Models
         [Key]
         public int Id { get; set; }
 
-        // public int CategoriaId {get; set;}
-
+        [Required]
+        public int CategoriaId { get; set; }
         [ForeignKey("CategoriaId")]
         public Categoria Categoria { get; set; }
-        public int CategoriaId { get; set; }
 
         [Required]
-        [MaxLength(200)]
         public string Nome { get; set; }
 
         [Required]
@@ -25,18 +23,15 @@ namespace GranShopAPI.Models
         public string Descricao { get; set; }
 
         [Required]
-        [MaxLength(100)]
-        public int estoque { get; set; }
+        public int Estoque { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public decimal valorCusto { get; set; }
+        public decimal ValorCusto { get; set; }
 
         [Required]
-        [MaxLength(50)]
-        public decimal valorVenda { get; set; }
+        public decimal ValorVenda { get; set; }
 
         [Required]
-        public bool destaque { get; set; }
+        public bool Destaque { get; set; }
     }
 }
